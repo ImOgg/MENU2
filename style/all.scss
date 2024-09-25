@@ -1,0 +1,514 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 16px;
+}
+
+body {
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+}
+
+img,
+iframe {
+    vertical-align: bottom;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+input {
+    outline: none;
+}
+
+input[type=date] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+select,
+input {
+    padding: 4px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    min-height: 1.2em;
+    background-color: #fff;
+    color: #333;
+}
+
+iframe {
+    border: none;
+}
+
+textarea {
+    resize: none;
+}
+
+// 以上為共用
+
+$header_color: linear-gradient(to right, #ff7bab, #ffa76a);
+$text_color: #fff;
+$nav_bar_text_color: #101f46;
+$mobile_navbar_color: rgb(18, 42, 94);
+
+.header {
+    width: 100%;
+    background: $header_color;
+    /* 統一背景色 */
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    transition: height 0.3s;
+}
+
+.nav_container {
+    max-width: 1366px;
+    /* 固定最大寬度 */
+    margin: auto;
+    padding: 0px 32px;
+    position: relative;
+    /* 為子元素設置定位參考 */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1366px;
+    margin: auto;
+
+    .logo_link {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.desktop_login_out {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+}
+
+.icon-setting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+
+.logo-text {
+    margin-left: 10px;
+}
+
+// 在桌機版滑過編輯個人資料後，會出現的選項
+.btn_showoff {
+    position: relative;
+}
+
+.showoff {
+    position: absolute;
+    background-color: #fff;
+    display: none;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    width: 100%;
+}
+
+.btn_showoff:hover .showoff {
+    display: block;
+}
+
+.mobile-menu-2-btn {
+    display: none;
+}
+
+
+@media (max-width: 480px) {
+    .nav_container {
+        padding: 0 10px 8px 8px;
+    }
+
+    .navbar {
+        display: block;
+    }
+
+    .login_out {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+
+    .mobile_Hamburger_Setting {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .mobile-menu-2-btn {
+        display: block;
+    }
+
+    ul.desktop-menu {
+        position: fixed;
+        width: 80vw;
+        transition: all 0.5s;
+        flex-direction: column;
+        right: -100%;
+
+        li {
+            width: 100%;
+        }
+    }
+
+    ul.desktop-menu.show {
+        right: 0;
+    }
+
+    .showoff {
+        position: static;
+    }
+
+    .desktop-menu li a {
+        padding: 6px 20px;
+    }
+
+    .btn_showoff {
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 768px) {
+    
+    .menu-container {
+        width: 100%;
+        overflow: scroll;
+    }
+    .close-container{
+        width: 100%;
+    }
+
+}
+
+
+/* 設定全局字體顏色為黑色 */
+body,
+.profile-link,
+.profile-other-link li a {
+    color: #212121;
+    /* Material Design 中常用的深黑色 */
+}
+
+/* Icon setting 基本樣式 */
+.icon-setting {
+    cursor: pointer;
+    /* 設置鼠標為指針狀 */
+}
+
+/* Profile Other Link 下拉選單樣式 */
+.profile-other-link {
+    display: none;
+    /* 預設隱藏 */
+    position: absolute;
+    /* 絕對定位 */
+    top: 100%;
+    /* 放在父元素的底部 */
+    right: 0;
+    /* 靠右對齊 */
+    background: #ffffff;
+    /* 純白背景 */
+    border-radius: 8px;
+    /* 更大的圓角 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* 更明顯的陰影 */
+    overflow: hidden;
+    /* 隱藏溢出 */
+    z-index: 10;
+    /* 保證在其他元素之上 */
+    min-width: 240px;
+    /* 更大的最小寬度 */
+    margin-top: 12px;
+    /* 增加與觸發元素的間距 */
+    padding: 8px 0;
+    /* 上下內間距，讓項目有空間 */
+}
+
+/* 當 hover 到 .icon-setting 或 .profile-other-link 時，顯示下拉選單 */
+.icon-setting:hover .profile-other-link,
+.icon-setting:hover .link-container,
+.profile-other-link:hover {
+    display: block;
+    /* 顯示 ul */
+}
+
+/* 下拉選單的項目樣式 */
+.profile-other-link li {
+    list-style: none;
+    /* 移除列表樣式 */
+    padding: 12px 16px;
+    /* 增加內間距 */
+    border-bottom: 1px solid #eee;
+    /* 項目之間的分隔線 */
+    cursor: pointer;
+    /* 鼠標為指針狀 */
+    transition: background 0.3s, color 0.3s;
+    /* 增加過渡效果 */
+}
+
+/* 最後一個項目移除底部邊框 */
+.profile-other-link li:last-child {
+    border-bottom: none;
+}
+
+/* 項目連結的樣式 */
+.profile-other-link li a {
+    display: block;
+    /* 設置為區塊，讓整個 li 可點擊 */
+    color: #212121;
+    /* 文字顏色設為黑色 */
+    text-decoration: none;
+    /* 移除連結的下劃線 */
+}
+
+/* 項目 hover 效果 */
+.profile-other-link li:hover {
+    background-color: #f5f5f5;
+    /* Hover 背景色 */
+}
+
+/* 項目連結 hover 效果 */
+.profile-other-link li a:hover {
+    color: #6200ea;
+    /* Material Design 的紫色，僅在 hover 時變色 */
+}
+
+/* 當 hover 到 .icon-setting 時更改 a 的顏色 */
+.icon-setting:hover a {
+    color: #6200ea;
+    /* 設置為 Material Design 的主題色 */
+}
+
+.login_out {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 登出按鈕樣式 */
+.login_out a {
+    text-decoration: none;
+    /* 移除連結的下劃線 */
+    color: #212121;
+    /* 黑色字體 */
+    padding: 8px 16px;
+    /* 內間距 */
+    border-radius: 4px;
+    /* 圓角 */
+    transition: background 0.3s, color 0.3s;
+    /* 增加過渡效果 */
+}
+
+/* 登出按鈕 hover 效果 */
+.login_out a:hover {
+    background-color: #e0e0e0;
+    /* 灰色 hover 背景 */
+    color: #6200ea;
+    /* hover 時字體顏色變為 Material Design 主題色 */
+}
+
+/* 預設隱藏 .desktop-menu */
+.desktop-menu {
+    display: none;
+    /* 初始狀態隱藏 */
+    position: fixed;
+    /* 設置為固定定位，確保它覆蓋整個螢幕 */
+    inset: 0;
+    /* 與螢幕底部對齊 */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* 背景設置為半透明黑色 */
+    z-index: 1000;
+    /* 保證其在最上層 */
+    padding: 20px;
+    /* 設置內間距 */
+    /* 使用 flexbox 屬性 */
+    flex-direction: column;
+    /* 讓項目垂直排列 */
+    justify-content: center;
+    /* 垂直居中 */
+    align-items: center;
+    /* 水平居中 */
+    color: #ffffff;
+    /* 設置字體顏色為白色 */
+    transition: opacity 5s ease, right 5s ease;
+    /* 設置透明度和位置的過渡效果，時間延長到 0.6 秒 */
+    /* 設置透明度過渡效果 */
+    opacity: 0;
+    /* 初始透明度設置為 0 */
+}
+
+.menu-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.menu-group {
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 500px;
+    overflow: hidden;
+}
+
+.menu-group-title {
+    padding: 16px 20px;
+    background-color: #ffa76a;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-items li {
+    padding: 12px 20px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-items li:last-child {
+    border-bottom: none;
+}
+
+.menu-items li:hover {
+    background-color: #f0f0f0;
+}
+
+.menu-items li a {
+    display: block;
+    color: #212121;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.menu-items li a:hover {
+    color: #6200ea;
+}
+
+/* 當 .desktop-menu 被添加 active 類別時顯示 */
+.desktop-menu.active {
+    display: flex;
+    /* 顯示為 flexbox */
+    opacity: 1;
+    /* 設置透明度為 1，讓其顯示 */
+}
+
+/* 菜單項目樣式 */
+.menu-item {
+    margin: 10px 0;
+    /* 設置每個項目之間的間距 */
+    padding: 15px 30px;
+    /* 增加內間距 */
+    background-color: #6200ea;
+    /* 設置背景色為 Material Design 紫色 */
+    border-radius: 8px;
+    /* 設置圓角 */
+    cursor: pointer;
+    /* 設置鼠標樣式為指針 */
+    transition: background-color 0.3s, transform 0.3s;
+    /* 增加背景色與縮放效果的過渡 */
+}
+
+/* 當菜單項目被懸停時的效果 */
+.menu-item:hover {
+    background-color: #3700b3;
+    /* 懸停時改變背景色 */
+    transform: scale(1.05);
+    /* 當懸停時放大 5% */
+}
+
+.show-menu-button {
+    padding: 10px 20px;
+    background-color: transparent;
+    /* 全透明背景色 */
+    color: #6200ea;
+    /* 按鈕文字設置為主題紫色 */
+    cursor: pointer;
+    border: 2px solid #6200ea;
+    /* 添加邊框，以便在透明背景時仍能看到按鈕 */
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+    /* 增加背景和文字顏色過渡效果 */
+}
+
+#show-menu-button:hover {
+    background-color: rgba(#fff, 0.1);
+    /* 半透明的紫色背景 */
+    color: #3700b3;
+    /* 文字顏色變為深紫色 */
+    border-color: #3700b3;
+    /* 邊框顏色變深 */
+}
+
+.close-container {
+    max-width: 1366px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    width: 100%;
+}
+
+.hidden-menu-button {
+    padding: 10px 20px;
+    background-color: #fff;
+    /* 全透明背景色 */
+    color: #6200ea;
+    /* 按鈕文字設置為主題紫色 */
+    cursor: pointer;
+    border: 2px solid #6200ea;
+    /* 添加邊框，以便在透明背景時仍能看到按鈕 */
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+    /* 增加背景和文字顏色過渡效果 */
+}
+
+.hidden-menu-button:hover {
+    background-color: rgba(#fff, 0.1);
+    /* 半透明的紫色背景 */
+    color: #3700b3;
+    /* 文字顏色變為深紫色 */
+    border-color: #3700b3;
+    /* 邊框顏色變深 */
+}
